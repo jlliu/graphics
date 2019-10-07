@@ -446,8 +446,8 @@ function onStartFrame(t, state) {
     setShape(state, clearBlue,"octahedron",[0.,.0,-8.],.8,[hover3,rotate_Y_matrix(Math.PI/2.3*time), rotate_Z_matrix(Math.PI/2.3*time)]);
 
 
-    var bowlTransform = [scale_matrix(1.,.7,1.),rotate_Y_matrix(Math.PI/2.3*time)];
-    setShape(state, shinyPink,"bowl",[0.,-1.45,-3.],.4,bowlTransform);
+    var bowlTransform = [scale_matrix(.6,.5,.6),rotate_Y_matrix(Math.PI/2.3*time)];
+    setShape(state, shinyPink,"bowl",[0.,-1.27,-3.],.2,bowlTransform);
 
     gl.enable(gl.DEPTH_TEST);
 }
