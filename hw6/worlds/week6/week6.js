@@ -176,7 +176,7 @@ let uvToCylinder = (u,v) =>{
 }
 
 
-var cylinderVertices =  createMeshVertices(30,6,uvToCylinder);
+var cylinderVertices =  createMeshVertices(50,6,uvToCylinder);
 
 
 async function setup(state) {
@@ -460,8 +460,10 @@ var cucumber = new  Material([.3,.8,.1],[.0,.00,.0],[0.1,0.1,0.05],2.,[0.0,0.0,0
 
 var white = new Material([.8,.8,.8],[.1,.1,.1],[0.1,0.1,0.1],10.,[0.0,0.0,0.0],[0.,0.,0.],1.2);
 
+var plate = new Material([.9,.2,.9],[.0,.0,.0],[0.1,0.1,0.1],.4,[0.1,0.1,0.1],[0.,0.,0.],1.2);
 
-var blue = new Material([.0,.6,.5],[.0,.1,.1],[0.1,0.1,0.1],10.,[0.0,0.0,0.0],[0.,0.,0.],1.2);
+
+var blue = new Material([.3,.1,.9],[.0,.1,.1],[0.1,0.1,0.1],10.,[0.0,0.0,0.0],[0.,0.,0.],1.2);
 
 function setMaterial(state, material){
     gl.uniform3fv(state.uMaterialsLoc.ambient , material.ambient);
@@ -476,7 +478,7 @@ function setMaterial(state, material){
 
 let createIkuraPlacements = ()=>{
   var ikuraPlacements = [];
-  for (var i=0;i < 70; i++){
+  for (var i=0;i < 60; i++){
     ikuraPlacements.push([Math.random()*5.5,Math.random()*1,Math.random()*14]);
   }
  return ikuraPlacements;
@@ -511,9 +513,9 @@ function onDraw(t, projMat, viewMat, state, eyeIdx) {
 
     /*Set lights (state, source Point, color)*/
    
-    setLight(state,[-5.,-3.,-1.],[.5,0.,0.5]);
+    setLight(state,[-5.,-3.,-4.],[.5,0.,0.5]);
 
-    setLight(state,[4.,0.,3.],[0.3,.3,.3]);
+    setLight(state,[4.,0.,1.],[0.9,.3,.3]);
 
     gl.uniform1f(state.uFishTextureLoc,0);
 
@@ -629,11 +631,25 @@ function onDraw(t, projMat, viewMat, state, eyeIdx) {
       m.rotateY(theta);
       m.translate(3,-2.5,-3*t*.5);
 
+
+
       //Createa 80 sushis
-      for(var i=0; i < 20; i++){
+      for(var i=0; i < 12; i++){
+
         
         m.save();
           m.translate(0.,0.,4*i);
+          //create plates
+
+          m.save();
+            m.translate(0,-.8,0);
+             m.scale(1.6,.05,1.6);
+            m.rotateX(theta*2);
+           
+            drawShape(plate, gl.TRIANGLE_STRIP, cylinderVertices);
+          m.restore();
+
+         
           m.rotateY(t);
           if (i % 6 == 0){
              makeRectangularSushi(salmon,true,false);

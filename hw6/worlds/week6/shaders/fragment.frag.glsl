@@ -67,12 +67,6 @@ vec3 phongShading(vec3 N, Material M, vec3 E){
 	
 	}
 
-		vec3 mouseLightDir = vec3(uCursor.x*4.,uCursor.y*4.,2.);
-		vec3 mouseLightColor = vec3(.6,.6,0.);
-		vec3 L = normalize(mouseLightDir);
-		vec3 R = 2.* dot(N,L) * N - L;
-		thisColor += mouseLightColor * (M.diffuse*max(0.,dot(N,L)) + M.specular * pow(max(0.,dot(E,R)), M.power));
-
 
 
 
