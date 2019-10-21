@@ -145,8 +145,27 @@ let uvToTorus = (u,v) =>{
   return [x,y,z,n_x,n_y,n_z];
 }
 
+let uvToTorusSkinny = (u,v) =>{
+  var theta = 2 * Math.PI * u;
+  var phi = 2 * Math.PI * v;
 
-var torusVertices =  createMeshVertices(20,20,uvToTorus);
+  var r = .05; //just define inner tube here
+
+  var x = Math.cos(theta) * (1 + r * Math.cos(phi));
+  var y = Math.sin(theta) * (1 + r * Math.cos(phi));
+  var z = r * Math.sin(phi);
+
+  var n_x = Math.cos(theta) * Math.cos(phi);
+  var n_y = Math.sin(theta) * Math.cos(phi);
+  var n_z = Math.sin(phi);
+
+  return [x,y,z,n_x,n_y,n_z];
+}
+
+
+var torusVertices =  createMeshVertices(50,20,uvToTorus);
+
+var torusSkinnyVertices =  createMeshVertices(50,20,uvToTorusSkinny);
 
 let uvToTube = (u,v) =>{
   var theta = 2 * Math.PI * u;
@@ -645,8 +664,13 @@ function onDraw(t, projMat, viewMat, state, eyeIdx) {
             m.translate(0,-.8,0);
              m.scale(1.6,.05,1.6);
             m.rotateX(theta*2);
-           
             drawShape(plate, gl.TRIANGLE_STRIP, cylinderVertices);
+          m.restore();
+          m.save();
+             m.translate(0,-.7,0);
+             m.scale(1.6,2.,1.6);
+            m.rotateX(theta*2);
+            drawShape(plate, gl.TRIANGLE_STRIP, torusSkinnyVertices);
           m.restore();
 
          
