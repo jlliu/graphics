@@ -468,7 +468,7 @@ function onDraw(t, projMat, viewMat, state, eyeIdx) {
 
 
    m.translate(0,0,0);
-   m.scale(-10,-10,-10);
+   m.scale(-12,-12,-12);
     drawShape([1,1,1], gl.TRIANGLE_STRIP, sphereVertices,2);
 
     m.restore();
