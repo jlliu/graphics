@@ -200,7 +200,7 @@ let uvToSphere = (u,v) =>{
   return [x,y,z, x,y,z,u,v];
 }
 
-var sphereVertices = createMeshVertices(20,20,uvToSphere);
+var sphereVertices = createMeshVertices(200,200,uvToSphere);
 
 
 
@@ -464,13 +464,21 @@ function onDraw(t, projMat, viewMat, state, eyeIdx) {
 
          m.restore();
       }
+
+
+
+   m.translate(0,0,0);
+   m.scale(-10,-10,-10);
+    drawShape([1,1,1], gl.TRIANGLE_STRIP, sphereVertices,2);
+
     m.restore();
 
 
 
-   m.translate(0,0,-200);
-   m.scale(100,100,0);
-    drawShape([1,1,1], gl.TRIANGLES, cubeVertices,2);
+   // m.translate(0,0,-200);
+   // m.scale(100,100,0);
+   //  drawShape([1,1,1], gl.TRIANGLES, cubeVertices,2);
+
 
 
 }
