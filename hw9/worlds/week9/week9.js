@@ -30,10 +30,12 @@ const LEG_THICKNESS    = 0.0254 *   2.5;
 var objTree = document.getElementById('tree.obj').innerHTML;
 var tree_mesh = new OBJ.Mesh(objTree);
 
-var objStar = document.getElementById('star.obj').innerHTML;
+// var objStar = document.getElementById('star.obj').innerHTML;
+var objStar = starData;
 var star_mesh = new OBJ.Mesh(objStar);
 
-var objPear = document.getElementById('pear.obj').innerHTML;
+// var objPear = document.getElementById('pear.obj').innerHTML;
+var objPear = starData;
 var apple_mesh = new OBJ.Mesh(objPear);
 
 console.log(apple_mesh);
